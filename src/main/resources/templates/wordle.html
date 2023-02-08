@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Wordle</title>
+</head>
+<body>
+    <h1>Wordle</h1>
+    <form action="#" th:action="@{/wordle}" th:object="${word}" method="POST">
+        <input type="text" name="word" placeholder="Enter a word" />
+        <input type="submit" value="Add" />
+    </form>
+    
+</body>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Word</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="word : ${wordle.words}">
+            <td th:each="letter : ${word.letters}">[[${letter}]]</td>
+        </tr>
+    </tbody>
+</table>
+</html>

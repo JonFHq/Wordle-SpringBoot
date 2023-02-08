@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>es.salesianos</groupId>
-	<artifactId>veterinaria</artifactId>
+	<artifactId>wordle</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>veterinaria</name>
-	<description>Proyecto para gestión de clínica veterinaria</description>
+	<name>wordle</name>
+	<description>Wordle juego</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
