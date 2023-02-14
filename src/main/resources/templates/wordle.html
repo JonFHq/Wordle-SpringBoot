@@ -26,7 +26,8 @@
 <table class="table table-dark text-center auto">
     <thead>
         <tr>
-            <th th:colspan="${wordle.wordLength}">Wordle</th>
+            <th th:colspan="${wordle.wordLength}-1">Wordle</th>
+            <th th:text="${wordle.wordLength}"></th>
         </tr>
     </thead>
     <tbody>
