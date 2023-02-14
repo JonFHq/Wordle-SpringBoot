@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,13 +23,17 @@ public class WordleController {
 	
 	@GetMapping("/wordle")
 	public ModelAndView wordle(ModelAndView mv) {
+		mv.setViewName("wordle");
+		mv.addObject("wordle", wordleService.getWordle());
 		return mv;
 	}
 
 	@PostMapping("/wordle")
-	public ModelAndView wordle(@ModelAttribute String word) {
-		ModelAndView mv = new ModelAndView("wordle");
+	public ModelAndView wordlePost(@ModelAttribute("word") String word, ModelAndView mv) {
+		mv.setViewName("wordle");
 		wordleService.wordle(word);
+		mv.addObject("wordle", wordleService.getWordle());
 		return mv;
 	}
+
 }

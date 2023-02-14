@@ -1,28 +1,39 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+    <!-- Import springboot -->
+    <script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.1.3/js/bootstrap.min.js}"></script>
+    <link th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap-theme.min.css}" rel="stylesheet" />
+    <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet" />
     <meta charset="UTF-8">
-    <title>Wordle</title>
+    <title>Wordle</title>    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  
 </head>
+
 <body>
     <h1>Wordle</h1>
-    <form action="#" th:action="@{/wordle}" th:object="${word}" method="POST">
-        <input type="text" name="word" placeholder="Enter a word" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <form class="form" th:action="@{/wordle}" th:object="${word}" method="POST">
+        <input type="text" name="word" placeholder="Enter a word" th:maxlength="${wordle.wordLength}"/>
         <input type="submit" value="Add" />
     </form>
-    
-</body>
 
-<table border="1">
+</body>
+<table class="table table-dark text-center auto">
     <thead>
         <tr>
-            <th>Word</th>
+            <th th:colspan="${wordle.wordLength}">Wordle</th>
         </tr>
     </thead>
     <tbody>
-        <tr th:each="word : ${wordle.words}">
-            <td th:each="letter : ${word.letters}">[[${letter}]]</td>
+        <tr th:each="word : ${wordle.words}" th:class="'grid gap-0 column-gap-3'" >
+            <td th:each="letter : ${word.letters}" th:text="${letter.letter}" th:class="${letter.color}" ></td>
         </tr>
     </tbody>
 </table>
+
 </html>

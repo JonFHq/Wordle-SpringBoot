@@ -10,14 +10,14 @@ import lombok.Setter;
 @Component
 public class Letter {
     
-    private char letter;
+    private Character letter;
     private int position;
     private String color;
 
     public Letter() {
     }
 
-    public Letter(char letter, int position, String color) {
+    public Letter(Character letter, int position, String color) {
         this.letter = letter;
         this.position = position;
         this.color = color;

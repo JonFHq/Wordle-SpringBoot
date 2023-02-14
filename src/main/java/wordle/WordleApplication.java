@@ -6,7 +6,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan("Wordle.*")
+@ComponentScan("wordle.*")
 public class WordleApplication {
 
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
