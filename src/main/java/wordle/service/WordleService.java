@@ -23,7 +23,7 @@ public class WordleService implements IWordleService {
         for (int i = 0; i < letters.length; i++) {
             Letter letter = new Letter();
             letter.setLetter(Character.toUpperCase(letters[i]));
-            letter.setPosition(i+1);
+            letter.setPosition(-1);
             result.getLetters().add(letter);
         }
         return result;
@@ -43,16 +43,13 @@ public class WordleService implements IWordleService {
                 if (letters.get(i).getLetter() == word[j]
                         && letters.get(j).getColor() != "bg-success"
                         && letters.get(i).getColor() != "bg-success") {
-                            for (int k = i; k >= 0; k--) {
-                                if (k == i) {
-                                    continue;
-                                }
-                                if (letters.get(k).getLetter() == word[j] && letters.get(k).getPosition() == j) {
-                                    letters.get(i).setColor("bg-danger");
-                                    letters.get(k).setPosition(j);
+                            boolean isRepeated = false;
+                            for (int k = 0; k < letters.size(); k++) {
+                                if (letters.get(k).getPosition() == j) {
+                                    isRepeated = true;
                                 }
                             }
-                            if (letters.get(i).getColor() == null) {
+                            if (!isRepeated) {
                                 letters.get(i).setColor("bg-warning");
                                 letters.get(i).setPosition(j);
                             }
