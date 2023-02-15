@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-
 @Component
 public class Wordle {
 

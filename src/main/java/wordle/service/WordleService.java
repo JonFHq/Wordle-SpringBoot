@@ -44,7 +44,7 @@ public class WordleService implements IWordleService {
                         && letters.get(j).getColor() != "bg-success"
                         && letters.get(i).getColor() != "bg-success") {
                             boolean isRepeated = false;
-                            for (int k = 0; k < letters.size(); k++) {
+                            for (int k = 0; k < i; k++) {
                                 if (letters.get(k).getPosition() == j) {
                                     isRepeated = true;
                                 }

@@ -9,9 +9,9 @@
     <link th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap-theme.min.css}" rel="stylesheet" />
     <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
-    <title>Wordle</title>    
-
+    <title>Wordle</title>
     <style >
         .base {
             font-size:3rem;
@@ -29,47 +29,29 @@
 </head>
 
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <!--<div class="container-fluid">
-        <div class="row">
-            <div class="col-10">
-                <form class="form" th:action="@{/wordle}" th:object="${word}" method="POST">
-                    <input type="text" name="word" placeholder="Enter a word" th:maxlength="${wordle.wordLength}" th:minlength="${wordle.wordLength}" autofocus/>
-                    <input type="submit" value="Add" />
-                </form>
-            </div>
-            <div class="col-2">
-                <input type="text" placeholder="Search try:" th:object="${word}" />
-            </div>
-        </div>
-    </div>-->
-
     <table class="table table-dark text-center auto">
         <thead>
             <tr>
                 <th class="title" th:colspan="${wordle.wordLength}">Wordle</th>
                 <th class="title" th:text="${wordle.wordLength} + 'L'"></th>
             </tr>
-        </thead>
-        <tbody>
             <tr>
                 <form class="form" th:action="@{/wordle}" th:object="${word}" method="POST">
-                    <td th:colspan="${wordle.wordLength}-1">
+                    <th th:colspan="${wordle.wordLength}">
                         <input  type="text" name="word" placeholder="Enter a word" th:maxlength="${wordle.wordLength}" th:minlength="${wordle.wordLength}" autofocus/>
-                    </td>
-                    <td>
+                    </th>
+                    <th>
                         <input type="submit" value="Add" />
-                    </td>
+                    </th>
                 </form>
-                <td>
-                    <input type="text" placeholder="Search try:" th:object="${word}" />
-                </td>
             </tr>
-            <tr th:each="word : ${wordle.words}" th:class="'grid column-gap-3'" >
-                <td th:each="letter : ${word.letters}" >
+        </thead>
+        <tbody class="d-flex flex-column-reverse justify-content-evenly">
+            <tr class="flex-wrap" th:each="word, iter : ${wordle.words}" >
+                <td class="col" th:each="letter : ${word.letters}" >
                     <div th:text="${letter.letter}" th:class="'base border border-light rounded mx-auto ' + ${letter.color}" ></div>
                 </td>
-                <td class="base" th:text="1"></td>
+                <td class="base" th:text="${iter.index}+1"></td>
             </tr>
         </tbody>
     </table>
