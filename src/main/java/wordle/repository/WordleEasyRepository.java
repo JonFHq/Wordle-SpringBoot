@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 import wordle.model.Word;
 import wordle.model.Wordle;
 
-@Profile("easy")
 @Repository
+@Profile("easy")
 public class WordleEasyRepository implements IWordleRepository {
 
     static Character[] word = {'A', 'B', 'C'};

@@ -64,6 +64,7 @@
     </div>
 -->
     <table class="table table-dark text-center auto">
+        <!--
         <thead>
             <tr>
                 <th class="title" th:colspan="${wordle.wordLength}">Wordle</th>
@@ -72,14 +73,33 @@
             <tr>
                 <form class="form" th:action="@{/wordle}" th:object="${word}" method="POST">
                     <th th:colspan="${wordle.wordLength}">
-                        <input  type="text" name="word" placeholder="Enter a word" th:maxlength="${wordle.wordLength}" th:minlength="${wordle.wordLength}" autofocus/>
+                        <input class="form-control rounded-0" type="text" name="word" placeholder="Enter a word" th:maxlength="${wordle.wordLength}" th:minlength="${wordle.wordLength}" autofocus/>
                     </th>
                     <th>
-                        <input type="submit" value="Add" />
+                        <input class="btn btn-primary rounded-0" type="submit" value="Add" />
                     </th>
                 </form>
             </tr>
         </thead>
+        -->
+        
+        <thead>
+            <tr>
+                <th class="title" th:colspan="${wordle.wordLength}">Wordle</th>
+                <th class="title" th:text="${wordle.wordLength} + 'L'"></th>
+            </tr>
+            <tr>
+                <form class="form" th:action="@{/wordle}" th:object="${word}" method="POST">
+                    <th th:colspan="${wordle.wordLength}">
+                        <input class="form-control rounded-0" type="text" name="word" placeholder="Enter a word" th:maxlength="${wordle.wordLength}" th:minlength="${wordle.wordLength}" autofocus/>
+                    </th>
+                    <th>
+                        <input class="btn btn-primary rounded-0" type="submit" value="Add" />
+                    </th>
+                </form>
+            </tr>
+        </thead>
+       
         <!--
         <tbody>
             <tr class="flex-wrap" th:each="word, iter : ${wordle.words}" >

@@ -9,11 +9,11 @@ import org.springframework.stereotype.Repository;
 import wordle.model.Word;
 import wordle.model.Wordle;
 
-@Profile("mid")
 @Repository
+@Profile("mid")
 public class WordleMidRepository implements IWordleRepository {
 
-    static Character[] word = {'A', 'B', 'C', 'C', 'B', 'A'};
+    static Character[] word = {'A', 'B', 'C', 'B', 'A'};
     static List<Word> words = new ArrayList<Word>();
     static int tries = 10;
 

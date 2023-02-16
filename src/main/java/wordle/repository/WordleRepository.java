@@ -11,9 +11,9 @@ import wordle.model.Wordle;
 @Repository
 public class WordleRepository implements IWordleRepository {
 
-    static Character[] word = {'P', 'B', 'C', 'D', 'A', 'B', 'C', 'D', 'E'};
+    static Character[] word = new Character[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
     static List<Word> words = new ArrayList<Word>();
-    static int tries = 20;
+    static int tries = 6;
 
     private static Wordle wordle = new Wordle(word, tries, words);
 
