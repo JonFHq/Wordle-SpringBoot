@@ -7,4 +7,5 @@ public interface IWordleRepository {
     void reset();
 
     Wordle getWordle();
+    
 }

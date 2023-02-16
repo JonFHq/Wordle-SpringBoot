@@ -86,7 +86,7 @@
         <thead>
             <tr>
                 <th class="title" th:colspan="${wordle.wordLength}">Wordle</th>
-                <th class="title" th:text="${wordle.wordLength} + 'L'"></th>
+                <th class="base title" th:text="${wordle.wordLength} + 'L'"></th>
             </tr>
             <tr>
                 <form class="form" th:action="@{/wordle}" th:object="${word}" method="POST">
@@ -130,7 +130,9 @@
         
         
     </table>
-    
+    <div class="container-fluid d-grid gap-2 mx-auto p-2 border-top border-light fixed-bottom">
+        <a class="btn btn-lg btn-danger rounded-0 hover" type="button" title="Reset" href="/checkReset">Reset</a>
+    </div>
 </body>
 
 </html>

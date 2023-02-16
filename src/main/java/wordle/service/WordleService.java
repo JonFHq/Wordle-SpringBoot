@@ -75,4 +75,11 @@ public class WordleService implements IWordleService {
     public Wordle getWordle() {
         return wordleRepository.getWordle();
     }
+
+    @Override
+    public void resetWordle() {
+        Wordle wordle = wordleRepository.getWordle();
+        wordle.getWords().clear();
+        wordle.setTries(wordle.getMaxTries());
+    }
 }

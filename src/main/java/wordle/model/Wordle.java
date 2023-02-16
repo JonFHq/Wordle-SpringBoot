@@ -8,9 +8,11 @@ import org.springframework.stereotype.Component;
 public class Wordle {
 
     private Character[] word;
-    private static int wordLength;
     private List<Word> words;
     private int tries;
+
+    private static int wordLength;
+    private static int maxTries;
 
     public Wordle() {
     }
@@ -19,6 +21,7 @@ public class Wordle {
         this.word = word;
         wordLength = word.length;
         this.tries = tries;
+        maxTries = tries;
         this.words = words;
     }
 
@@ -52,6 +55,10 @@ public class Wordle {
 
     public int getWordLength() {
         return wordLength;
+    }
+
+    public int getMaxTries() {
+        return maxTries;
     }
 
 }

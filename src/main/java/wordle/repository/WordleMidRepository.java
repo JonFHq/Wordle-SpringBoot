@@ -17,15 +17,15 @@ public class WordleMidRepository implements IWordleRepository {
     static List<Word> words = new ArrayList<Word>();
     static int tries = 10;
 
-    private static Wordle wordle = new Wordle(word, tries, words);
+    private Wordle wordle = new Wordle(word, tries, words);
 
     @Override
     public void reset() {
-        wordle = new Wordle();
+        this.wordle = new Wordle(word, tries, words);
     }
 
     @Override
     public Wordle getWordle() {
-        return wordle;
+        return this.wordle;
     }
 }

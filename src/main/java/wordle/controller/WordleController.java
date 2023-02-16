@@ -19,6 +19,17 @@ public class WordleController {
 	public String index() {
 		return "index";
 	}
+
+	@GetMapping("/checkReset")
+	public String checkReset() {
+		return "checkReset";
+	}
+
+	@PostMapping("/checkReset")
+	public String checkResetPost() {
+		wordleService.resetWordle();
+		return "index";
+	}
 	
 	@GetMapping("/wordle")
 	public ModelAndView wordle(ModelAndView mv) {
