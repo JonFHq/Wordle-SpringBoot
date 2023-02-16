@@ -17,7 +17,6 @@
             font-size:3rem;
             width:5rem;
             height: 5rem;
-            text-align: center;
             text-size-adjust:inherit;
         }
         .title {
@@ -29,6 +28,41 @@
 </head>
 
 <body>
+<!--
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-10 bg-dark text-light">
+                <h1 class="title text-center">Wordle</h1>
+            </div>
+            <div class="col-2 bg-dark text-light">
+                <h1 class="title text-center">[[${wordle.wordLength}]]L</h1>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 bg-dark">
+                <form class="form" th:action="@{/wordle}" th:object="${word}" method="POST">
+                    <div class="row justify-content-center">
+                        <div class="col-10">
+                            <input type="text" name="word" placeholder="Enter a word" th:maxlength="${wordle.wordLength}" th:minlength="${wordle.wordLength}" autofocus/>
+                        </div>
+                        <div class="col-2">
+                            <input type="submit" value="Add" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row justify-content-center justify-content-evenly  bg-dark" th:each="word, iter : ${wordle.words}">
+            <div class="col border-dark-subtle" th:each="letter : ${word.letters}">
+                <div th:text="${letter.letter}" th:class="'base border border-dark-subtle rounded mx-auto text-center ' + ${letter.color}" ></div>
+            </div>
+            <div class="col">
+                <div class="base border border-dark rounded mx-auto text-center text-light" th:text="${iter.index}+1"></div>
+            </div>
+        </div>
+
+    </div>
+-->
     <table class="table table-dark text-center auto">
         <thead>
             <tr>
@@ -46,7 +80,8 @@
                 </form>
             </tr>
         </thead>
-        <tbody class="d-flex flex-column-reverse justify-content-evenly">
+        <!--
+        <tbody>
             <tr class="flex-wrap" th:each="word, iter : ${wordle.words}" >
                 <td class="col" th:each="letter : ${word.letters}" >
                     <div th:text="${letter.letter}" th:class="'base border border-light rounded mx-auto ' + ${letter.color}" ></div>
@@ -54,6 +89,26 @@
                 <td class="base" th:text="${iter.index}+1"></td>
             </tr>
         </tbody>
+        -->
+        <tbody>
+            <th:block th:with="words=${wordle.words}">
+                <th:block th:each="index : ${#numbers.sequence(words.size(), 1, -1)}">
+                    <tr class="flex-wrap">
+                        <th:block th:with="word=${words[index-1]}">
+                            <th:block th:each="letter : ${word.letters}">
+                                <td class="col">
+                                    <div th:text="${letter.letter}" th:class="'base border border-light rounded mx-auto ' + ${letter.color}" ></div>
+                                </td>
+                            </th:block>
+                            <td class="base" th:text="${index}"></td>
+                        </th:block>
+                    </tr>
+                </th:block>
+            </th:block>
+        </tbody>
+        
+        
+        
     </table>
     
 </body>
