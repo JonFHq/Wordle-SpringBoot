@@ -27,7 +27,7 @@
     </style>
 </head>
 
-<body>
+<body class="bg-dark">
 <!--
     <div class="container-fluid">
         <div class="row">
@@ -91,7 +91,7 @@
             <tr>
                 <form class="form" th:action="@{/wordle}" th:object="${word}" method="POST">
                     <th th:colspan="${wordle.wordLength}">
-                        <input class="form-control rounded-0" type="text" name="word" placeholder="Enter a word" th:maxlength="${wordle.wordLength}" th:minlength="${wordle.wordLength}" autofocus/>
+                        <input class="form-control rounded-0" type="text" name="word" placeholder="Enter a word" th:maxlength="${wordle.wordLength}" th:minlength="${wordle.wordLength}" required autofocus/>
                     </th>
                     <th>
                         <input class="btn btn-primary rounded-0" type="submit" value="Add" />
