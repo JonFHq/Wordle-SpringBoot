@@ -21,7 +21,7 @@ public class WordleController {
 	}
 
 	@GetMapping("/checkReset")
-	public String checkReset() {
+	public String checkResetGet() {
 		return "checkReset";
 	}
 

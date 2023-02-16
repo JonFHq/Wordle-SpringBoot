@@ -8,81 +8,31 @@
     <link th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap.min.css}" rel="stylesheet" />
     <link th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap-theme.min.css}" rel="stylesheet" />
     <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <title>Wordle</title>
-    <style >
+    <style>
         .base {
-            font-size:3rem;
-            width:5rem;
+            font-size: 3rem;
+            width: 5rem;
             height: 5rem;
-            text-size-adjust:inherit;
+            text-size-adjust: inherit;
         }
+
         .title {
             font-size: 3rem;
             text-align: center;
-            text-size-adjust:inherit;
+            text-size-adjust: inherit;
         }
     </style>
 </head>
 
 <body class="bg-dark">
-<!--
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-10 bg-dark text-light">
-                <h1 class="title text-center">Wordle</h1>
-            </div>
-            <div class="col-2 bg-dark text-light">
-                <h1 class="title text-center">[[${wordle.wordLength}]]L</h1>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-12 bg-dark">
-                <form class="form" th:action="@{/wordle}" th:object="${word}" method="POST">
-                    <div class="row justify-content-center">
-                        <div class="col-10">
-                            <input type="text" name="word" placeholder="Enter a word" th:maxlength="${wordle.wordLength}" th:minlength="${wordle.wordLength}" autofocus/>
-                        </div>
-                        <div class="col-2">
-                            <input type="submit" value="Add" />
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="row justify-content-center justify-content-evenly  bg-dark" th:each="word, iter : ${wordle.words}">
-            <div class="col border-dark-subtle" th:each="letter : ${word.letters}">
-                <div th:text="${letter.letter}" th:class="'base border border-dark-subtle rounded mx-auto text-center ' + ${letter.color}" ></div>
-            </div>
-            <div class="col">
-                <div class="base border border-dark rounded mx-auto text-center text-light" th:text="${iter.index}+1"></div>
-            </div>
-        </div>
-
-    </div>
--->
     <table class="table table-dark text-center auto">
-        <!--
-        <thead>
-            <tr>
-                <th class="title" th:colspan="${wordle.wordLength}">Wordle</th>
-                <th class="title" th:text="${wordle.wordLength} + 'L'"></th>
-            </tr>
-            <tr>
-                <form class="form" th:action="@{/wordle}" th:object="${word}" method="POST">
-                    <th th:colspan="${wordle.wordLength}">
-                        <input class="form-control rounded-0" type="text" name="word" placeholder="Enter a word" th:maxlength="${wordle.wordLength}" th:minlength="${wordle.wordLength}" autofocus/>
-                    </th>
-                    <th>
-                        <input class="btn btn-primary rounded-0" type="submit" value="Add" />
-                    </th>
-                </form>
-            </tr>
-        </thead>
-        -->
-        
         <thead>
             <tr>
                 <th class="title" th:colspan="${wordle.wordLength}">Wordle</th>
@@ -91,7 +41,9 @@
             <tr>
                 <form class="form" th:action="@{/wordle}" th:object="${word}" method="POST">
                     <th th:colspan="${wordle.wordLength}">
-                        <input class="form-control rounded-0" type="text" name="word" placeholder="Enter a word" th:maxlength="${wordle.wordLength}" th:minlength="${wordle.wordLength}" required autofocus/>
+                        <input class="form-control rounded-0" type="text" name="word" placeholder="Enter a word"
+                            th:maxlength="${wordle.wordLength}" th:minlength="${wordle.wordLength}" required
+                            autofocus />
                     </th>
                     <th>
                         <input class="btn btn-primary rounded-0" type="submit" value="Add" />
@@ -99,17 +51,6 @@
                 </form>
             </tr>
         </thead>
-       
-        <!--
-        <tbody>
-            <tr class="flex-wrap" th:each="word, iter : ${wordle.words}" >
-                <td class="col" th:each="letter : ${word.letters}" >
-                    <div th:text="${letter.letter}" th:class="'base border border-light rounded mx-auto ' + ${letter.color}" ></div>
-                </td>
-                <td class="base" th:text="${iter.index}+1"></td>
-            </tr>
-        </tbody>
-        -->
         <tbody>
             <th:block th:with="words=${wordle.words}">
                 <th:block th:each="index : ${#numbers.sequence(words.size(), 1, -1)}">
@@ -117,7 +58,8 @@
                         <th:block th:with="word=${words[index-1]}">
                             <th:block th:each="letter : ${word.letters}">
                                 <td class="col">
-                                    <div th:text="${letter.letter}" th:class="'base border border-light rounded mx-auto ' + ${letter.color}" ></div>
+                                    <div th:text="${letter.letter}"
+                                        th:class="'base border border-light rounded mx-auto ' + ${letter.color}"></div>
                                 </td>
                             </th:block>
                             <td class="base" th:text="${index}"></td>
@@ -126,9 +68,6 @@
                 </th:block>
             </th:block>
         </tbody>
-        
-        
-        
     </table>
     <div class="container-fluid d-grid gap-2 mx-auto p-2 border-top border-light fixed-bottom">
         <a class="btn btn-lg btn-danger rounded-0 hover" type="button" title="Reset" href="/checkReset">Reset</a>
