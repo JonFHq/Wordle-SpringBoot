@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Wordle try search</title>
+</head>
+
+<body>
+    <h1>Search try</h1>
+    <form action="/searchTry" th:object="${try}" method="POST">
+        <input type="number" name="try" placeholder="Search try" th:max="${tries}" required autofocus />
+        <input type="submit" value="Search" />
+    </form>
+    <table>
+        <tr th:text="'This is the try number ' + ${try} + ' out of ' + ${tries} + ' tries you made'"></tr>
+        <tr>
+            <td th:each="letter : ${searchTry}" th:text="${letter.letter}"></td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>
+                <a href="/wordle">Back to the game</a>
+            </td>
+            <td>
+                <a href="/">Menu</a>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

@@ -30,7 +30,7 @@ public class WordleController {
 		wordleService.resetWordle();
 		return "index";
 	}
-	
+
 	@GetMapping("/wordle")
 	public ModelAndView wordle(ModelAndView mv) {
 		mv.setViewName("wordle");
@@ -43,6 +43,26 @@ public class WordleController {
 		mv.setViewName("wordle");
 		wordleService.wordle(word);
 		mv.addObject("wordle", wordleService.getWordle());
+		return mv;
+	}
+
+	@GetMapping("/searchTry")
+	public ModelAndView searchTry(ModelAndView mv) {
+		mv.setViewName("searchTry");
+		mv.addObject("tries", wordleService.getWordle().getWords().size());
+		if (wordleService.getWordle().getWords().size() > 1) {
+			mv.addObject("try", 1);
+			mv.addObject("searchTry", wordleService.getWordle().getWords().get(0).getLetters());
+		}
+		return mv;
+	}
+
+	@PostMapping("/searchTry")
+	public ModelAndView searchTryPost(@ModelAttribute("try") int trySearch, ModelAndView mv) {
+		mv.setViewName("searchTry");
+		mv.addObject("searchTry", wordleService.getWordle().getWords().get(trySearch - 1).getLetters());
+		mv.addObject("tries", wordleService.getWordle().getWords().size());
+		mv.addObject("try", trySearch);
 		return mv;
 	}
 
