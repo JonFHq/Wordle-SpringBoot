@@ -3,17 +3,17 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Wordle try search</title>
+    <title>Wordle busca de intentos</title>
 </head>
 
 <body>
-    <h1>Search try</h1>
+    <h1>Busca en tus intentos</h1>
     <form action="/searchTry" th:object="${try}" method="POST">
-        <input type="number" name="try" placeholder="Search try" min="1" th:max="${tries}" required autofocus />
-        <input type="submit" value="Search" />
+        <input type="number" name="try" placeholder="Busca tu intento" min="1" th:max="${tries}" required autofocus />
+        <input type="submit" value="Buscar" />
     </form>
     <table>
-        <tr th:text="'This is the try number ' + ${try} + ' out of ' + ${tries} + ' tries you made'"></tr>
+        <tr th:text="'Este es tu intento ' + ${try} + ' de ' + ${tries} + ' que has hecho'"></tr>
         <tr>
             <td>
                 <th:block th:each="letter : ${searchTry}" th:text="${letter.letter}"></th:block>
@@ -23,7 +23,7 @@
     <table>
         <tr>
             <td>
-                <a href="/wordle">Back to the game</a>
+                <a href="/wordle">Vuelve al juego</a>
             </td>
             <td>
                 <a href="/">Menu</a>

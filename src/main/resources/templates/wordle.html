@@ -46,9 +46,9 @@
         <th:block th:if="${gameOver}">
             <div class="alert alert-danger" role="alert">
                 <h4 class="alert-heading">Game over!</h4>
-                <p>Try again</p>
+                <p>Intentalo de nuevo</p>
                 <hr>
-                <p class="mb-0">You can go back to the menu or try again</p>
+                <p class="mb-0">Puedes ir al menu para reempezar la partida</p>
             </div>
         </th:block>
         <table th:unless="${gameOver}" class="table table-dark text-center mb-0">
@@ -60,7 +60,7 @@
                 <tr>
                     <form class="form" th:action="@{/wordle}" th:object="${word}" method="POST">
                         <th th:colspan="${wordle.wordLength}">
-                            <input class="form-control rounded-0" type="text" name="word" placeholder="Enter a word"
+                            <input class="form-control rounded-0" type="text" name="word" placeholder="Introduce una palabra"
                                 th:maxlength="${wordle.wordLength}" th:minlength="${wordle.wordLength}" required
                                 autofocus/>
                         </th>
