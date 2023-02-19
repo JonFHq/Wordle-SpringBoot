@@ -9,7 +9,7 @@
 <body>
     <h1>Search try</h1>
     <form action="/searchTry" th:object="${try}" method="POST">
-        <input type="number" name="try" placeholder="Search try" th:max="${tries}" required autofocus />
+        <input type="number" name="try" placeholder="Search try" min="1" th:max="${tries}" required autofocus />
         <input type="submit" value="Search" />
     </form>
     <table>
