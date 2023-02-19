@@ -15,7 +15,9 @@
     <table>
         <tr th:text="'This is the try number ' + ${try} + ' out of ' + ${tries} + ' tries you made'"></tr>
         <tr>
-            <td th:each="letter : ${searchTry}" th:text="${letter.letter}"></td>
+            <td>
+                <th:block th:each="letter : ${searchTry}" th:text="${letter.letter}"></th:block>
+            </td>
         </tr>
     </table>
     <table>

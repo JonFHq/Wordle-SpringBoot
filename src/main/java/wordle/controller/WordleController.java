@@ -35,6 +35,10 @@ public class WordleController {
 	public ModelAndView wordle(ModelAndView mv) {
 		mv.setViewName("wordle");
 		mv.addObject("wordle", wordleService.getWordle());
+		if (wordleService.getWordle().getWords().size()-1 > wordleService.getWordle().getMaxTries())
+			mv.addObject("gameOver", true);
+		else
+			mv.addObject("gameOver", false);
 		return mv;
 	}
 
@@ -43,6 +47,10 @@ public class WordleController {
 		mv.setViewName("wordle");
 		wordleService.wordle(word);
 		mv.addObject("wordle", wordleService.getWordle());
+		if (wordleService.getWordle().getWords().size()+1 > wordleService.getWordle().getMaxTries())
+			mv.addObject("gameOver", true);
+		else
+			mv.addObject("gameOver", false);
 		return mv;
 	}
 

@@ -9,7 +9,6 @@ public class Wordle {
 
     private Character[] word;
     private List<Word> words;
-    private int tries;
 
     private static int wordLength;
     private static int maxTries;
@@ -20,7 +19,7 @@ public class Wordle {
     public Wordle(Character[] word, int tries, List<Word> words) {
         this.word = word;
         wordLength = word.length;
-        this.tries = tries;
+        maxTries = tries;
         maxTries = tries;
         this.words = words;
     }
@@ -31,14 +30,6 @@ public class Wordle {
 
     public void setWord(Character[] word) {
         this.word = word;
-    }
-
-    public int getTries() {
-        return tries;
-    }
-
-    public void setTries(int tries) {
-        this.tries = tries;
     }
 
     public List<Word> getWords() {
