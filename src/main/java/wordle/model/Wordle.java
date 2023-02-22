@@ -9,6 +9,7 @@ public class Wordle {
 
     private Character[] word;
     private List<Word> words;
+    private boolean victory;
 
     private static int wordLength;
     private static int maxTries;
@@ -20,8 +21,8 @@ public class Wordle {
         this.word = word;
         wordLength = word.length;
         maxTries = tries;
-        maxTries = tries;
         this.words = words;
+        this.victory = false;
     }
 
     public Character[] getWord() {
@@ -50,6 +51,14 @@ public class Wordle {
 
     public int getMaxTries() {
         return maxTries;
+    }
+
+    public boolean isVictory() {
+        return victory;
+    }
+
+    public void setVictory(boolean victory) {
+        this.victory = victory;
     }
 
 }

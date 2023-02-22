@@ -42,35 +42,48 @@
 </head>
 
 <body class="bg-dark">
-    <div class="container-fluid fixed-top p-0" style="height: 145px;">
-        <th:block th:if="${gameOver}">
-            <div class="alert alert-danger" role="alert">
-                <h4 class="alert-heading">Game over!</h4>
-                <p>Intentalo de nuevo</p>
-                <hr>
-                <p class="mb-0">Puedes ir al menu para reempezar la partida</p>
+    <div class="container-fluid fixed-top p-2" style="height: 145px;">
+        <th:block th:if="${victory}">
+            <div class="card bg-info">
+                <div class="card-header">
+                    <h5 class="card-title">¡Has ganado!</h5>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">Acertaste la palabra</h6>
+                    <p class="card-text">Puedes empezar una nueva partida en el Menu</p>
+                </div>
             </div>
         </th:block>
-        <table th:unless="${gameOver}" class="table table-dark text-center mb-0">
-            <thead>
-                <tr>
-                    <th class="title" th:colspan="${wordle.wordLength}">Wordle</th>
-                    <th class="base title" th:text="${wordle.wordLength} + 'L'"></th>
-                </tr>
-                <tr>
-                    <form class="form" th:action="@{/wordle}" th:object="${word}" method="POST">
-                        <th th:colspan="${wordle.wordLength}">
-                            <input class="form-control rounded-0" type="text" name="word" placeholder="Introduce una palabra"
-                                th:maxlength="${wordle.wordLength}" th:minlength="${wordle.wordLength}" required
-                                autofocus/>
-                        </th>
-                        <th>
-                            <input class="btn btn-primary rounded-0" type="submit" value="Añadir"/>
-                        </th>
-                    </form>
-                </tr>
-            </thead>
-        </table>
+        <th:block th:unless="${victory}">
+            <th:block th:if="${gameOver}">
+                <div class="alert alert-danger" role="alert">
+                    <h4 class="alert-heading">Game over!</h4>
+                    <p>Intentalo de nuevo</p>
+                    <hr>
+                    <p class="mb-0">Puedes ir al menu para reempezar la partida</p>
+                </div>
+            </th:block>
+            <table th:unless="${gameOver}" class="table table-dark text-center mb-0">
+                <thead>
+                    <tr>
+                        <th class="title" th:colspan="${wordle.wordLength}">Wordle</th>
+                        <th class="base title" th:text="${wordle.wordLength} + 'L'"></th>
+                    </tr>
+                    <tr>
+                        <form class="form" th:action="@{/wordle}" th:object="${word}" method="POST">
+                            <th th:colspan="${wordle.wordLength}">
+                                <input class="form-control rounded-0" type="text" name="word"
+                                    placeholder="Introduce una palabra" th:maxlength="${wordle.wordLength}"
+                                    th:minlength="${wordle.wordLength}" required autofocus />
+                            </th>
+                            <th>
+                                <input class="btn btn-primary rounded-0" type="submit" value="Añadir" />
+                            </th>
+                        </form>
+                    </tr>
+                </thead>
+            </table>
+        </th:block>
     </div>
     <div class="container-fluid scrollable p-0">
         <table class="table table-dark text-center auto">
@@ -94,9 +107,33 @@
             </tbody>
         </table>
     </div>
-    <div class="container-fluid d-grid gap-2 mx-auto border-top border-light-subtle fixed-bottom p-2"
+    <div class="container-fluid bg-dark d-grid gap-2 mx-auto border-top border-light-subtle fixed-bottom p-2"
         style="height: 65px;">
-        <a class="btn btn-lg btn-danger rounded-0 hover" type="button" title="Reset" href="/checkReset">Menu</a>
+        <!--<a class="btn btn-lg btn-primary rounded-0 hover" type="button" title="Reset" href="/checkReset">Menu</a>-->
+        <button type="button" class="btn btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Menu
+        </button>
+    </div>
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/checkReset" method="POST">
+                        <input type="submit" class="alert alert-danger hover text-size-adjust" value="Reiniciar partida" />
+                    </form>
+                    <a class="btn btn-lg btn-primary" href="/searchTry">Ver intentos</a>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-secondary" href="/">Menu</a>
+                    <a class="btn btn-primary"href="/wordle">Cerrar menu</a>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 

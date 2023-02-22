@@ -22,23 +22,26 @@ public class WordleController {
 
 	@GetMapping("/checkReset")
 	public String checkResetGet() {
-		return "checkReset";
+		return "redirect:/wordle";
 	}
 
 	@PostMapping("/checkReset")
 	public String checkResetPost() {
 		wordleService.resetWordle();
-		return "index";
+		return "redirect:/wordle";
 	}
 
 	@GetMapping("/wordle")
 	public ModelAndView wordle(ModelAndView mv) {
 		mv.setViewName("wordle");
 		mv.addObject("wordle", wordleService.getWordle());
-		if (wordleService.getWordle().getWords().size()-1 > wordleService.getWordle().getMaxTries())
-			mv.addObject("gameOver", true);
-		else
-			mv.addObject("gameOver", false);
+		if (!wordleService.getWordle().isVictory())
+			if (wordleService.getWordle().getWords().size() + 1 > wordleService.getWordle().getMaxTries())
+				mv.addObject("gameOver", true);
+			else
+				mv.addObject("gameOver", false);
+
+		mv.addObject("victory", wordleService.getWordle().isVictory());
 		return mv;
 	}
 
@@ -47,10 +50,14 @@ public class WordleController {
 		mv.setViewName("wordle");
 		wordleService.wordle(word);
 		mv.addObject("wordle", wordleService.getWordle());
-		if (wordleService.getWordle().getWords().size()+1 > wordleService.getWordle().getMaxTries())
-			mv.addObject("gameOver", true);
-		else
-			mv.addObject("gameOver", false);
+		if (!wordleService.getWordle().isVictory())
+			if (wordleService.getWordle().getWords().size() + 1 > wordleService.getWordle().getMaxTries())
+				mv.addObject("gameOver", true);
+			else
+				mv.addObject("gameOver", false);
+
+		mv.addObject("victory", wordleService.getWordle().isVictory());
+
 		return mv;
 	}
 

@@ -32,10 +32,12 @@ public class WordleService implements IWordleService {
     @Override
     public void checkWord(Word myWord, Character[] word) {
         List<Letter> letters = myWord.getLetters();
+        int aciertos = 0;
         for (int i = 0; i < letters.size(); i++) {
             if (letters.get(i).getLetter() == word[i]) {
                 letters.get(i).setColor("bg-success");
                 letters.get(i).setPosition(i);
+                aciertos++;
             }
         }
         for (int i = 0; i < letters.size(); i++) {
@@ -59,6 +61,13 @@ public class WordleService implements IWordleService {
                 letters.get(i).setColor("bg-danger");
             }
         }
+        if (aciertos == letters.size()) {
+            Wordle wordle = wordleRepository.getWordle();
+            wordle.setVictory(true);
+        } else {
+            Wordle wordle = wordleRepository.getWordle();
+            wordle.setVictory(false);
+        }
     }
 
     @Override
@@ -80,5 +89,6 @@ public class WordleService implements IWordleService {
     public void resetWordle() {
         Wordle wordle = wordleRepository.getWordle();
         wordle.getWords().clear();
+        wordle.setVictory(false);
     }
 }
