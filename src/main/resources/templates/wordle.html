@@ -56,11 +56,11 @@
         </th:block>
         <th:block th:unless="${victory}">
             <th:block th:if="${gameOver}">
-                <div class="alert alert-danger" role="alert">
-                    <h4 class="alert-heading">Game over!</h4>
-                    <p>Intentalo de nuevo</p>
+                <div class="alert alert-danger" style="height: 140px;" role="alert">
+                    <h4 class="alert-heading mb-0">Game over!</h4>
+                    <p class="mb-0">Intentalo de nuevo</p>
                     <hr>
-                    <p class="mb-0">Puedes ir al menu para reempezar la partida</p>
+                    <p>Puedes ir al menu para reempezar la partida</p>
                 </div>
             </th:block>
             <table th:unless="${gameOver}" class="table table-dark text-center mb-0">
@@ -110,7 +110,7 @@
     <div class="container-fluid bg-dark d-grid gap-2 mx-auto border-top border-light-subtle fixed-bottom p-2"
         style="height: 65px;">
         <!--<a class="btn btn-lg btn-primary rounded-0 hover" type="button" title="Reset" href="/checkReset">Menu</a>-->
-        <button type="button" class="btn btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <button type="button" class="btn btn-lg btn-primary rounded-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             Menu
         </button>
     </div>
