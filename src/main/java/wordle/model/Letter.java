@@ -17,9 +17,8 @@ public class Letter {
     public Letter() {
     }
 
-    public Letter(Character letter, int position, String color) {
+    public Letter(Character letter, int position) {
         this.letter = letter;
         this.position = position;
-        this.color = color;
     }
 }

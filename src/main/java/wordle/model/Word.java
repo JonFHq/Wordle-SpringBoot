@@ -15,6 +15,13 @@ public class Word {
 
     private List<Letter> letters = new ArrayList<Letter>();
 
+    public Word() {
+    }
+
+    public Word(List<Letter> letters) {
+        this.letters = letters;
+    }
+
     public void addLetter(Letter letter) {
         letters.add(letter);
     }
