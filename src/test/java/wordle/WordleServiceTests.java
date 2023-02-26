@@ -1,4 +1,4 @@
-package wordle.service;
+package wordle;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import wordle.model.Letter;
 import wordle.model.Word;
@@ -18,6 +19,7 @@ import wordle.model.Wordle;
 import wordle.repository.IWordleRepository;
 import wordle.service.WordleService;
 
+@SpringBootTest
 class WordleServiceTest {
 
     @Mock
@@ -43,7 +45,6 @@ class WordleServiceTest {
 
     @Test
     void testCheckWordCorrect() {
-        String wordStr = "test";
         Character[] wordArr = { 't', 'e', 's', 't' };
         Word word = new Word();
         for (int i = 0; i < wordArr.length; i++) {
@@ -71,7 +72,6 @@ class WordleServiceTest {
 
     @Test
     void testCheckWordIncorrect() {
-        String wordStr = "test";
         Character[] wordArr = { 't', 'e', 's', 't' };
         Word word = new Word();
         for (int i = 0; i < wordArr.length; i++) {
