@@ -1,4 +1,4 @@
-package wordle;
+package wordle.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -17,7 +17,6 @@ import wordle.model.Letter;
 import wordle.model.Word;
 import wordle.model.Wordle;
 import wordle.repository.IWordleRepository;
-import wordle.service.WordleService;
 
 @SpringBootTest
 class WordleServiceTest {
@@ -29,14 +28,14 @@ class WordleServiceTest {
     private WordleService wordleService;
 
     @BeforeEach
-    void setUp() throws Exception {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
     @Test
     void testGetWord() {
         String wordStr = "test";
-        Character[] wordArr = { 't', 'e', 's', 't' };
+        Character[] wordArr = { 'T', 'E', 'S', 'T' };
         Word word = wordleService.getWord(wordStr);
         for (int i = 0; i < wordArr.length; i++) {
             assertEquals(wordArr[i], word.get(i).getLetter());
@@ -45,21 +44,21 @@ class WordleServiceTest {
 
     @Test
     void testCheckWordCorrect() {
-        Character[] wordArr = { 't', 'e', 's', 't' };
+        Character[] wordArr = { 'T', 'E', 'S', 'T' };
         Word word = new Word();
         for (int i = 0; i < wordArr.length; i++) {
             Letter letter = new Letter(wordArr[i], i);
             word.addLetter(letter);
         }
 
-        Character[] guessArr = { 't', 'e', 's', 't' };
+        Character[] guessArr = { 'T', 'E', 'S', 'T' };
         Word guess = new Word();
         for (int i = 0; i < guessArr.length; i++) {
             Letter letter = new Letter(guessArr[i], i);
             guess.addLetter(letter);
         }
 
-        List<Word> words = new ArrayList<Word>();
+        List<Word> words = new ArrayList<>();
         words.add(guess);
 
         Wordle wordle = new Wordle(wordArr, 10, words);
@@ -86,7 +85,7 @@ class WordleServiceTest {
             guess.addLetter(letter);
         }
 
-        List<Word> words = new ArrayList<Word>();
+        List<Word> words = new ArrayList<>();
         words.add(guess);
 
         Wordle wordle = new Wordle(wordArr, 10, words);
@@ -107,7 +106,7 @@ class WordleServiceTest {
             Letter letter = new Letter(wordArr[i], i);
             word.addLetter(letter);
         }
-        List<Word> words = new ArrayList<Word>();
+        List<Word> words = new ArrayList<>();
         Wordle wordle = new Wordle(wordArr, 10, words);
         wordle.setVictory(false);
 
@@ -122,7 +121,7 @@ class WordleServiceTest {
     @Test
     void testGetWordle() {
         Character[] wordArr = { 't', 'e', 's', 't' };
-        List<Word> words = new ArrayList<Word>();
+        List<Word> words = new ArrayList<>();
         Wordle wordle = new Wordle(wordArr, 10, words);
 
         when(wordleRepository.getWordle()).thenReturn(wordle);
@@ -135,7 +134,7 @@ class WordleServiceTest {
     @Test
     void testResetWordle() {
         Character[] wordArr = { 't', 'e', 's', 't' };
-        List<Word> words = new ArrayList<Word>();
+        List<Word> words = new ArrayList<>();
         Wordle wordle = new Wordle(wordArr, 10, words);
 
         when(wordleRepository.getWordle()).thenReturn(wordle);
