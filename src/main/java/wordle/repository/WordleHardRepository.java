@@ -20,11 +20,6 @@ public class WordleHardRepository implements IWordleRepository {
     private Wordle wordle = new Wordle(word, tries, words);
 
     @Override
-    public void reset() {
-        this.wordle = new Wordle(word, tries, words);
-    }
-
-    @Override
     public Wordle getWordle() {
         return this.wordle;
     }

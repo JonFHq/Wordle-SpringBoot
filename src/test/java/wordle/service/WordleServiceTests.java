@@ -17,12 +17,18 @@ import wordle.model.Letter;
 import wordle.model.Word;
 import wordle.model.Wordle;
 import wordle.repository.IWordleRepository;
+import wordle.repository.WordleEasyRepository;
+import wordle.repository.WordleMidRepository;
+import wordle.repository.WordleHardRepository;
 
 @SpringBootTest
 class WordleServiceTest {
 
     @Mock
     private IWordleRepository wordleRepository;
+    private WordleEasyRepository wordleEasyRepository;
+    private WordleMidRepository wordleMidRepository;
+    private WordleHardRepository wordleHardRepository;
 
     @InjectMocks
     private WordleService wordleService;

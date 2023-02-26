@@ -36,7 +36,7 @@ public class WordleController {
 		mv.setViewName("wordle");
 		mv.addObject("wordle", wordleService.getWordle());
 		if (!wordleService.getWordle().isVictory())
-			if (wordleService.getWordle().getWords().size() + 1 > wordleService.getWordle().getMaxTries())
+			if (wordleService.getWordle().getWords().size() + 1 > wordleService.getWordle().getTries())
 				mv.addObject("gameOver", true);
 			else
 				mv.addObject("gameOver", false);
@@ -51,7 +51,7 @@ public class WordleController {
 		wordleService.wordle(word, wordleService.getWordle());
 		mv.addObject("wordle", wordleService.getWordle());
 		if (!wordleService.getWordle().isVictory())
-			if (wordleService.getWordle().getWords().size() + 1 > wordleService.getWordle().getMaxTries())
+			if (wordleService.getWordle().getWords().size() + 1 > wordleService.getWordle().getTries())
 				mv.addObject("gameOver", true);
 			else
 				mv.addObject("gameOver", false);

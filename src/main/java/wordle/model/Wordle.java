@@ -11,14 +11,14 @@ public class Wordle {
     private List<Word> words;
     private boolean victory;
 
-    private static int maxTries;
+    private static int tries;
 
     public Wordle() {
     }
 
     public Wordle(Character[] word, int tries, List<Word> words) {
         this.word = word;
-        maxTries = tries;
+        Wordle.tries = tries;
         this.words = words;
         this.victory = false;
     }
@@ -35,8 +35,8 @@ public class Wordle {
         words.add(word);
     }
 
-    public int getMaxTries() {
-        return maxTries;
+    public int getTries() {
+        return tries;
     }
 
     public boolean isVictory() {

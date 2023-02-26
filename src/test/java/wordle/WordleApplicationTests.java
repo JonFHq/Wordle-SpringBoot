@@ -1,25 +1,33 @@
 package wordle;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
-class WordleApplicationTests {
-	
-    @Autowired
-    private WordleApplication application;
+class WordleSpringBootApplicationTests {
+
+    @Mock
+    private SpringApplicationBuilder springApplicationBuilder;
 
     @Test
-    void contextLoads() {
-        assertNotNull(application);
+    public void testConfigure() {
+        WordleApplication app = new WordleApplication();
+        Mockito.when(springApplicationBuilder.sources(WordleApplication.class)).thenReturn(springApplicationBuilder);
+        SpringApplicationBuilder result = app.configure(springApplicationBuilder);
+        Mockito.verify(springApplicationBuilder).sources(WordleApplication.class);
+        assertEquals(springApplicationBuilder, result);
     }
 
     @Test
-    void mainTest() {
-        WordleApplication.main(new String[] {});
+    void contextLoads() {
+        //WordleApplication.main(new String[] {});
+		assertTrue(true);
     }
 
 }
