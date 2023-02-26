@@ -66,15 +66,15 @@
             <table th:unless="${gameOver}" class="table table-dark text-center mb-0">
                 <thead>
                     <tr>
-                        <th class="title" th:colspan="${wordle.wordLength}">Wordle</th>
-                        <th class="base title" th:text="${wordle.wordLength} + 'L'"></th>
+                        <th class="title" th:colspan="${wordle.word.length}">Wordle</th>
+                        <th class="base title" th:text="${wordle.maxTries} + 'T'"></th>
                     </tr>
                     <tr>
                         <form class="form" th:action="@{/wordle}" th:object="${word}" method="POST">
-                            <th th:colspan="${wordle.wordLength}">
+                            <th th:colspan="${wordle.word.length}">
                                 <input class="form-control rounded-0" type="text" name="word"
-                                    placeholder="Introduce una palabra" th:maxlength="${wordle.wordLength}"
-                                    th:minlength="${wordle.wordLength}" required autofocus />
+                                    placeholder="Introduce una palabra" th:maxlength="${wordle.word.length}"
+                                    th:minlength="${wordle.word.length}" required autofocus />
                             </th>
                             <th>
                                 <input class="btn btn-primary rounded-0" type="submit" value="Añadir" />

@@ -75,7 +75,9 @@ public class WordleController {
 	@PostMapping("/searchTry")
 	public ModelAndView searchTryPost(@ModelAttribute("try") int trySearch, ModelAndView mv) {
 		mv.setViewName("searchTry");
-		mv.addObject("searchTry", wordleService.getWordle().getWords().get(trySearch - 1).getLetters());
+		if (!wordleService.getWordle().getWords().isEmpty())
+			mv.addObject("searchTry", wordleService.getWordle().getWords().get(trySearch - 1).getLetters());
+		
 		mv.addObject("tries", wordleService.getWordle().getWords().size());
 		mv.addObject("try", trySearch);
 		return mv;
