@@ -48,7 +48,7 @@ public class WordleController {
 	@PostMapping("/wordle")
 	public ModelAndView wordlePost(@ModelAttribute("word") String word, ModelAndView mv) {
 		mv.setViewName("wordle");
-		wordleService.wordle(word);
+		wordleService.wordle(word, wordleService.getWordle());
 		mv.addObject("wordle", wordleService.getWordle());
 		if (!wordleService.getWordle().isVictory())
 			if (wordleService.getWordle().getWords().size() + 1 > wordleService.getWordle().getMaxTries())

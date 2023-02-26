@@ -62,9 +62,8 @@ class WordleServiceTest {
         words.add(guess);
 
         Wordle wordle = new Wordle(wordArr, 10, words);
-        wordle.setVictory(false);
 
-        wordleService.checkWord(guess, wordle.getWord());
+        wordleService.checkWord(guess, wordle.getWord(), wordle);
 
         assertTrue(wordle.isVictory());
     }
@@ -89,32 +88,33 @@ class WordleServiceTest {
         words.add(guess);
 
         Wordle wordle = new Wordle(wordArr, 10, words);
-        wordle.setVictory(false);
 
-        wordleService.checkWord(guess, wordle.getWord());
+        wordleService.checkWord(guess, wordle.getWord(), wordle);
 
         assertFalse(wordle.isVictory());
     }
 
     @Test
     void testWordle() {
-        // Set up initial state
         String wordStr = "test";
-        Character[] wordArr = { 't', 'e', 's', 't' };
+        Character[] wordArr = { 'T', 'E', 'S', 'T' };
         Word word = new Word();
         for (int i = 0; i < wordArr.length; i++) {
             Letter letter = new Letter(wordArr[i], i);
+            letter.setColor("bg-success");
             word.addLetter(letter);
         }
         List<Word> words = new ArrayList<>();
         Wordle wordle = new Wordle(wordArr, 10, words);
         wordle.setVictory(false);
 
-        // Call method under test
-        wordleService.wordle(wordStr);
+        wordleService.wordle(wordStr, wordle);
 
-        // Check post-conditions
-        assertTrue(wordle.getWords().contains(word));
+        // for that shows the letters of word and the word generated in the wordle are the same letters
+        for (int i = 0; i < word.getLetters().size(); i++) {
+            assertEquals(word.getLetters().get(i).getLetter(), wordle.getWords().get(0).getLetters().get(i).getLetter());
+        }
+
         assertTrue(wordle.isVictory());
     }
 
@@ -139,7 +139,6 @@ class WordleServiceTest {
 
         when(wordleRepository.getWordle()).thenReturn(wordle);
 
-        // add a word to the wordle to make sure it's reset
         Word myWord = new Word();
         myWord.addLetter(new Letter('t', 0));
         myWord.addLetter(new Letter('e', 1));
@@ -148,10 +147,8 @@ class WordleServiceTest {
         wordle.addWord(myWord);
         wordle.setVictory(true);
 
-        // call the reset function
         wordleService.resetWordle();
 
-        // check that the wordle is reset
         Wordle result = wordleService.getWordle();
         assertFalse(result.isVictory());
         assertTrue(result.getWords().isEmpty());

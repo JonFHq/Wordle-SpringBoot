@@ -16,10 +16,6 @@ public class WordleService implements IWordleService {
     @Autowired
     private IWordleRepository wordleRepository;
 
-    public WordleService(IWordleRepository wordleRepository) {
-        this.wordleRepository = wordleRepository;
-    }
-
     @Override
     public Word getWord(String word) {
         Word result = new Word();
@@ -34,8 +30,7 @@ public class WordleService implements IWordleService {
     }
     
     @Override
-    public void checkWord(Word myWord, Character[] word) {
-        Wordle wordle = getWordle();
+    public void checkWord(Word myWord, Character[] word, Wordle wordle) {
         List<Letter> letters = myWord.getLetters();
         int aciertos = 0;
         for (int i = 0; i < letters.size(); i++) {
@@ -74,11 +69,10 @@ public class WordleService implements IWordleService {
     }
 
     @Override
-    public void wordle(String word) {
-        Wordle wordle = getWordle();
+    public void wordle(String word, Wordle wordle) {
         Character[] wordCheck = wordle.getWord();
         Word myWord = getWord(word);
-        checkWord(myWord, wordCheck);
+        checkWord(myWord, wordCheck, wordle);
         // Change color of the letter cell
         wordle.addWord(myWord);
     }
