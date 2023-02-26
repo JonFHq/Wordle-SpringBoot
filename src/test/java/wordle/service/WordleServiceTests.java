@@ -38,7 +38,7 @@ class WordleServiceTest {
         Character[] wordArr = { 'T', 'E', 'S', 'T' };
         Word word = wordleService.getWord(wordStr);
         for (int i = 0; i < wordArr.length; i++) {
-            assertEquals(wordArr[i], word.get(i).getLetter());
+            assertEquals(wordArr[i], word.getLetters().get(i).getLetter());
         }
     }
 
@@ -69,18 +69,22 @@ class WordleServiceTest {
     }
 
     @Test
-    void testCheckWordIncorrect() {
-        Character[] wordArr = { 't', 'e', 's', 't' };
+    void testCheckWordIncorrectPosition() {
+        Character[] wordArr = { 'T', 'E', 'S', 'T' };
+        Character[] guessArr = { 'T', 'T', 'T', 'X' };
+
+        String[] guessColor = { "bg-success", "bg-warning", "bg-danger", "bg-danger" };
+        int[] guessPosition = { 0, 3, -1, -1 };
         Word word = new Word();
         for (int i = 0; i < wordArr.length; i++) {
-            Letter letter = new Letter(wordArr[i], i);
+            Letter letter = new Letter(guessArr[i], guessPosition[i]);
+            letter.setColor(guessColor[i]);
             word.addLetter(letter);
         }
 
-        Character[] guessArr = { 't', 'e', 's', 'x' };
         Word guess = new Word();
         for (int i = 0; i < guessArr.length; i++) {
-            Letter letter = new Letter(guessArr[i], i);
+            Letter letter = new Letter(guessArr[i], -1);
             guess.addLetter(letter);
         }
 
@@ -90,6 +94,14 @@ class WordleServiceTest {
         Wordle wordle = new Wordle(wordArr, 10, words);
 
         wordleService.checkWord(guess, wordle.getWord(), wordle);
+
+        for (int i = 0; i < word.getLetters().size(); i++) {
+            assertEquals(word.getLetters().get(i).getLetter(), wordle.getWords().get(0).getLetters().get(i).getLetter());
+        }
+
+        for (int i = 0; i < word.getLetters().size(); i++) {
+            assertEquals(word.getLetters().get(i).getPosition(), wordle.getWords().get(0).getLetters().get(i).getPosition());
+        }
 
         assertFalse(wordle.isVictory());
     }
